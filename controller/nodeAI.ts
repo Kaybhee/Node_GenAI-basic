@@ -9,7 +9,9 @@ if (!apiKey) {
     throw new Error('GOOGLE_API_KEY environment variable is not set');
 }
 
-const aiModel = new ChatGoogleGenerativeAI({
+
+interface model{ model: string, maxOutputTokens?: number,  invoke: (prompt: any) => Promise<any> } interface typeModel extends model { apiKey?: string,} 
+const aiModel: typeModel = new ChatGoogleGenerativeAI({
     apiKey,
     model: "gemini-2.5-flash",
     maxOutputTokens: 2048
